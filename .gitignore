@@ -1,0 +1,49 @@
+# -----------------------------
+# Python cache and compiled files
+# -----------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+
+# -----------------------------
+# Virtual environments
+# -----------------------------
+venv/
+env/
+ENV/
+.venv/
+
+# -----------------------------
+# Environment variables
+# -----------------------------
+.env
+instance/
+*.env
+
+# -----------------------------
+# Logs
+# -----------------------------
+*.log
+
+# -----------------------------
+# OS-generated files
+# -----------------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# IDE/editor files
+# -----------------------------
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# -----------------------------
+# Heroku & deployment
+# -----------------------------
+*.pyc
+*.pyo
+*.pyd
