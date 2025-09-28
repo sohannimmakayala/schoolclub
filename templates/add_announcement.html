@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Add Announcement{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-lg rounded-3">
+                <div class="card-header bg-info text-white text-center">
+                    <h3>📢 Add Announcement</h3>
+                    <p class="mb-0">For Club: {{ club_id }}</p>
+                </div>
+                <div class="card-body">
+
+                    <!-- Flash messages -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <!-- Announcement Form -->
+                    <form method="POST" action="{{ url_for('add_announcement', club_id=club_id) }}">
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Announcement Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-info w-100">Post Announcement</button>
+                    </form>
+
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{{ url_for('admin_dashboard') }}" class="text-info fw-bold">← Back to Dashboard</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

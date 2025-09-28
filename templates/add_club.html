@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Add New Club{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <!-- Card -->
+            <div class="card shadow-lg rounded-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>➕ Add New Club</h3>
+                </div>
+                <div class="card-body">
+
+                    <!-- Flash messages -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <!-- Add Club Form -->
+                    <form method="POST" action="{{ url_for('add_club') }}">
+                        <div class="mb-3">
+                            <label for="club_name" class="form-label">Club Name</label>
+                            <input type="text" class="form-control" id="club_name" name="club_name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="leader_id" class="form-label">Select Club Leader</label>
+                            <select class="form-select" id="leader_id" name="leader_id" required>
+                                <option value="" disabled selected>-- Choose Leader --</option>
+                                {% for student in leaders %}
+                                    <option value="{{ student._id }}">{{ student.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Create Club</button>
+                    </form>
+
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{{ url_for('admin_dashboard') }}" class="text-primary fw-bold">← Back to Dashboard</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

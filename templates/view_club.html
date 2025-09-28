@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}View Club{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-green-600 text-white p-4 rounded-t">
+            <h3 class="text-xl font-bold">{{ club.name }}</h3>
+        </div>
+        <div class="card-body p-4">
+            <p class="mb-4">{{ club.description }}</p>
+
+            <!-- Join Club Button -->
+            {% if club._id|string not in joined_clubs %}
+                <a href="{{ url_for('join_club', club_id=club._id) }}" class="btn btn-primary mb-3">Join Club</a>
+            {% else %}
+                <span class="badge bg-success mb-3">You are a member</span>
+            {% endif %}
+
+            <!-- Announcements -->
+            <div class="mb-4">
+                <h5 class="font-semibold">📢 Announcements</h5>
+                {% if club.announcements %}
+                    <ul class="list-group list-group-flush">
+                        {% for ann in club.announcements %}
+                            <li class="list-group-item">{{ ann.message }} <small class="text-muted">({{ ann.date }})</small></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted">No announcements yet.</p>
+                {% endif %}
+            </div>
+
+            <!-- Members -->
+            <div class="mb-4">
+                <h5 class="font-semibold">👥 Members</h5>
+                {% if members %}
+                    <ul class="list-group list-group-flush">
+                        {% for member in members %}
+                            <li class="list-group-item">{{ member.name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted">No members joined yet.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="card-footer text-center p-3">
+            <a href="{{ url_for('home') }}" class="text-green-600 font-bold">← Back to Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

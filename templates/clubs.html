@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Clubs - School Clubs Platform</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Navbar */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #007bff;
+        padding: 10px 20px;
+      }
+      nav .logo {
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      nav .links a {
+        color: white;
+        text-decoration: none;
+        margin: 0 12px;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+      nav .links a:hover {
+        color: #ffeb3b;
+      }
+      nav .logout-btn {
+        background: #ff4d4d;
+        border: none;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-left: 15px;
+      }
+      nav .logout-btn:hover {
+        background: #cc0000;
+      }
+
+      main {
+        flex: 1;
+        max-width: 1000px;
+        margin: auto;
+        padding: 30px 20px;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      /* Search bar */
+      .search-box {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .search-box input {
+        flex: 1;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      .search-box button {
+        padding: 10px 15px;
+        background: #007bff;
+        border: none;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .search-box button:hover {
+        background: #0056b3;
+      }
+
+      /* Club cards */
+      .club-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+      }
+      .club-card {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .club-card h3 {
+        margin: 0 0 10px 0;
+        color: #333;
+      }
+      .club-card p {
+        color: #555;
+        font-size: 14px;
+        flex: 1;
+      }
+      .club-card button {
+        margin-top: 10px;
+        padding: 8px 12px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .club-card button:hover {
+        background: #1e7e34;
+      }
+
+      footer {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 15px;
+      }
+      footer a {
+        color: #ffeb3b;
+        margin: 0 10px;
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <a href="index.html" class="logo">🎓 SchoolClubs</a>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="clubs.html">Clubs</a>
+        <a href="myclubs.html">My Clubs</a>
+        <a href="profile.html">Profile</a>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
+    </nav>
+
+    <main>
+      <h1>All Clubs</h1>
+
+      <!-- Search Bar -->
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search clubs..." />
+        <button onclick="searchClubs()">Search</button>
+      </div>
+
+      <!-- Club Cards -->
+      <div class="club-cards" id="clubsContainer">
+        <div
+          class="club-card"
+          data-name="coding"
+          data-desc="Learn programming, build projects, and compete in hackathons."
+        >
+          <h3>Coding Club</h3>
+          <p>Learn programming, build projects, and compete in hackathons.</p>
+          <button onclick="joinClub('Coding Club')">Join Club</button>
+        </div>
+        <div
+          class="club-card"
+          data-name="music"
+          data-desc="Explore instruments, sing, and perform at school events."
+        >
+          <h3>Music Club</h3>
+          <p>Explore instruments, sing, and perform at school events.</p>
+          <button onclick="joinClub('Music Club')">Join Club</button>
+        </div>
+        <div
+          class="club-card"
+          data-name="photography"
+          data-desc="Capture memories, learn editing, and showcase your talent."
+        >
+          <h3>Photography Club</h3>
+          <p>Capture memories, learn editing, and showcase your talent.</p>
+          <button onclick="joinClub('Photography Club')">Join Club</button>
+        </div>
+        <div
+          class="club-card"
+          data-name="art"
+          data-desc="Painting, sketching, and creative workshops."
+        >
+          <h3>Art Club</h3>
+          <p>Painting, sketching, and creative workshops.</p>
+          <button onclick="joinClub('Art Club')">Join Club</button>
+        </div>
+        <div
+          class="club-card"
+          data-name="drama"
+          data-desc="Perform plays, skits, and theatre activities."
+        >
+          <h3>Drama Club</h3>
+          <p>Perform plays, skits, and theatre activities.</p>
+          <button onclick="joinClub('Drama Club')">Join Club</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <a href="#">About</a> | <a href="#">Contact</a> |
+      <a href="#">Help</a>
+    </footer>
+
+    <script>
+      function logout() {
+        alert("You have been logged out!");
+        window.location.href = "login.html";
+      }
+
+      function joinClub(clubName) {
+        alert("You have joined " + clubName + "!");
+      }
+
+      function searchClubs() {
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const clubs = document.querySelectorAll(".club-card");
+        clubs.forEach((club) => {
+          const name = club.getAttribute("data-name");
+          const desc = club.getAttribute("data-desc");
+          if (name.includes(query) || desc.includes(query) || query === "") {
+            club.style.display = "flex";
+          } else {
+            club.style.display = "none";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
